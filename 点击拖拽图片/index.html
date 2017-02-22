@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			#img{
+				position:absolute;
+				left:0;
+				top:0;
+			}
+		</style>
+	</head>
+	<body>
+		<img src="img/1.png" id="img">
+		<script>
+//		获取图片
+			var oImg=document.getElementById("img");
+//			设置点击事件
+//			oImg.onclick=function(e){
+			oImg.onmousedown=function(e){
+//				取消浏览器默认拖拽行为
+				e.preventDefault();
+//				获取点击的位置
+				var xx=e.offsetX;
+				var yy=e.offsetY;
+//				设置鼠标经过事件
+				document.onmousemove=function(e){
+//					获取鼠标经过位置
+					var x=e.clientX-xx;
+					var y=e.clientY-yy;
+//					设置图片位置与鼠标位置相同
+					oImg.style.left=x+"px";
+					oImg.style.top=y+"px";
+				}
+			}
+//			设置目标鼠标松开事件
+//			oImg.onmouseup=function(){
+//			设置整个页面鼠标松开事件
+			document.onmouseup=function(){
+				document.onmousemove=null;
+			}
+		</script>
+	</body>
+</html>
